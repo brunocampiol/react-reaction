@@ -24,7 +24,7 @@ class PublishMessage extends Component {
         //console.log('this', this);
         return(
             <div>
-                <h3>Got something to say?</h3>
+                <h3>Send a message here:</h3>
                 <input onChange={this.updateText} onKeyUp={this.handleKeyPress} />
                 {' '}
                 <button onClick={this.publishMessasge}>Publish!</button>

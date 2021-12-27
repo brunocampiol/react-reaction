@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
-import PubSub from './pubnub';
+import PubSub, { PubSubContext } from './pubnub';
 import App from './components/App';
 import { newMessage } from './actions/messages';
 import './index.css';
@@ -25,7 +25,7 @@ pubsub.addListener({
 
 
 setTimeout(() => {
-    pubsub.publish(newMessage('Hello boes'));
+    pubsub.publish(newMessage('default start message'));
 }, 1000);
 
 // Set timeout to avoid issues when we havent connected the listeners
@@ -35,7 +35,8 @@ setTimeout(() => {
 
 ReactDOM.render(
 <Provider store={store}>
-    <App />
+    <PubSubContext.Provider value={{pubsub}}>
+        <App />
+    </PubSubContext.Provider>
 </Provider>, 
-document.getElementById('root')
-);
+document.getElementById('root'));

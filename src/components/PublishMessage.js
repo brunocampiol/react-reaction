@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PubSub from '../pubnub';
-import { newMessage } from '../actions/messages'
+import { PubSubContext } from '../pubnub';
+import { newMessage } from '../actions/messages';
+//import PubSub from '../pubnub';
 
-const pubsub = new PubSub();
+//const pubsub = new PubSub();
 
 class PublishMessage extends Component {
 
@@ -11,15 +12,16 @@ class PublishMessage extends Component {
     updateText = event => this.setState({text: event.target.value});
 
     publishMessasge = () => {
-        pubsub.publish(newMessage(this.state.text));
+        this.context.pubsub.publish(newMessage(this.state.text));
+        //pubsub.publish(newMessage(this.state.text));
     }
 
     handleKeyPress = event => {
         if (event.key === 'Enter') this.publishMessasge();
     }
 
-    // Should it have the onKeyRelease/Up?
     render() {
+        //console.log('this', this);
         return(
             <div>
                 <h3>Got something to say?</h3>
@@ -29,6 +31,8 @@ class PublishMessage extends Component {
             </div>
         )
     }
+
+    static contextType = PubSubContext;
 }
 
 export default PublishMessage;

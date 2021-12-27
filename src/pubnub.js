@@ -1,10 +1,11 @@
 import PubNub from "pubnub";
+import { createContext } from 'react';
 import pubnubConfig from "./pubnub.config";
 
 export const MESSAGE_CHANNEL = 'MESSAGE_CHANNEL';
 
 class PubSub{
-    constructor(){
+    constructor() {
         this.pubnub = new PubNub(pubnubConfig);
         this.pubnub.subscribe({channels: [MESSAGE_CHANNEL]});
     }
@@ -19,6 +20,8 @@ class PubSub{
     }
 }
 
+//export const PubSubContext = createContext({ pubsub: new PubSub()});
+export const PubSubContext = createContext();
 export default PubSub;
 
 // pubnub.addListener({

@@ -23,7 +23,7 @@ class PublishMessage extends Component {
         return(
             <div>
                 <h3>Got something to say?</h3>
-                <input onChange={this.updateText} onKeyPress={this.handleKeyPress} />
+                <input onChange={this.updateText} onKeyUp={this.handleKeyPress} />
                 {' '}
                 <button onClick={this.publishMessasge}>Publish!</button>
             </div>

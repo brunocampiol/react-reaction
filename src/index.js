@@ -8,7 +8,9 @@ import App from './components/App';
 import { newMessage } from './actions/messages';
 import './index.css';
 
-const store = createStore(rootReducer);
+// window. adds data for 
+// https://github.com/zalmoxisus/redux-devtools-extension
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 //console.log('store.getState()', store.getState());
 store.subscribe(() => console.log('store.getState()', store.getState()));

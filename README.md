@@ -4,8 +4,14 @@ Clone or download this project to bootstrap a React project!
 
 ### Getting Started
 
-Install the relevant `node_modules` and fire up the development server:
+Install the relevant `node_modules`
 
 ```
-npm i && npm run dev
+npm install
+```
+
+Fire up the development server:
+
+```
+npm run dev
 ```

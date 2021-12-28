@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { PubSubContext } from '../pubnub';
+import { connect } from 'react-redux';
 import { newMessage } from '../actions/messages';
-//import PubSub from '../pubnub';
-
-//const pubsub = new PubSub();
 
 class PublishMessage extends Component {
 
@@ -12,7 +10,9 @@ class PublishMessage extends Component {
     updateText = event => this.setState({text: event.target.value});
 
     publishMessasge = () => {
-        this.context.pubsub.publish(newMessage(this.state.text));
+        const { text } = this.state;
+        const { username } = this.props;
+        this.context.pubsub.publish(newMessage({text, username}));
         //pubsub.publish(newMessage(this.state.text));
     }
 
@@ -21,7 +21,6 @@ class PublishMessage extends Component {
     }
 
     render() {
-        //console.log('this', this);
         return(
             <div>
                 <h3>Send a message here:</h3>
@@ -35,4 +34,4 @@ class PublishMessage extends Component {
     static contextType = PubSubContext;
 }
 
-export default PublishMessage;
+export default connect(({username}) => ({username}))(PublishMessage);

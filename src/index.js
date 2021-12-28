@@ -27,7 +27,7 @@ pubsub.addListener({
 
 
 setTimeout(() => {
-    pubsub.publish(newMessage({text: 'default start message', username: 'username'}));
+    pubsub.publish(newMessage({text: 'default start message', username: 'API'}));
 }, 1000);
 
 // Set timeout to avoid issues when we havent connected the listeners
